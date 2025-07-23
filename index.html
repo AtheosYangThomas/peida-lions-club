@@ -59,20 +59,20 @@
 </body>
 
 <div style="text-align: center; margin-top: 40px;">
-  <button onclick="copyEmail()" style="
+  <button id="copyEmailBtn" onclick="copyEmail()" style="
     padding: 12px 24px;
     font-size: 18px;
-    background-color: #00539C;
+    background-color: #007BFF;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
   ">
     📧 聯絡我們
   </button>
-  <div id="copyMsg" style="margin-top: 10px; color: green; font-weight: bold; display: none;">
-    ✅ 已複製 Email！
+  <div id="copyMsg" style="margin-top: 10px; color: #007BFF; font-weight: bold; display: none;">
+    📋 Email 地址已複製！
   </div>
 </div>
 
@@ -82,6 +82,12 @@
     navigator.clipboard.writeText(email).then(() => {
       const msg = document.getElementById('copyMsg');
       msg.style.display = 'block';
+
+      // 重置按鈕文字（可選）
+      const btn = document.getElementById('copyEmailBtn');
+      btn.innerText = '📧 聯絡我們';
+
+      // 1.5秒後隱藏訊息
       setTimeout(() => {
         msg.style.display = 'none';
       }, 1500);
